@@ -103,6 +103,34 @@ public class PunishmentServiceImpl implements PunishmentService {
                 getActivePunishment(target, Punishment.Type.TEMP_BAN).isPresent();
     }
 
+    @Override
+    public void kick(UUID issuer, UUID target, String reason) {
+        Punishment punishment = new Punishment(target, Punishment.Type.KICK, reason, System.currentTimeMillis(), issuer);
+
+        database.insertPunishment(punishment);
+        cache.invalidate(target);
+
+        // Kick online player if present
+        Player onlinePlayer = Bukkit.getPlayer(target);
+        if (onlinePlayer != null) {
+            String kickMessage = buildKickMessage(reason);
+            onlinePlayer.kickPlayer(kickMessage);
+        }
+
+        // Broadcast ban notification
+        String notification = MessagesConfig.get("punishments.kick.notify")
+                .replace("%target%", getName(target))
+                .replace("%issuer%", issuer != null ? getName(issuer) : CONSOLE_NAME)
+                .replace("%reason%", reason);
+        Bukkit.broadcast(notification, "staffutils.notify.kick");
+
+        // Send success message to issuer
+        String successMessage = MessagesConfig.get("punishments.kick.success")
+                .replace("%target%", getName(target))
+                .replace("%reason%", reason);
+        sendToIssuer(issuer, successMessage);
+    }
+
     /**
      * Get the active ban for a player.
      * 
@@ -273,8 +301,8 @@ public class PunishmentServiceImpl implements PunishmentService {
             return;
         }
 
-        Punishment punishment = new Punishment(target, 
-                expiresAt == -1 ? Punishment.Type.IP_BAN : Punishment.Type.IP_BAN, 
+        Punishment punishment = new Punishment(target,
+                Punishment.Type.IP_BAN,
                 reason, System.currentTimeMillis(), expiresAt, issuer, ipAddress);
         
         database.insertPunishment(punishment);
@@ -347,6 +375,13 @@ public class PunishmentServiceImpl implements PunishmentService {
                 .stream()
                 .map(line -> line.replace("%reason%", reason)
                         .replace("%expires%", expiresAt == -1 ? "Never" : formatTime(expiresAt)))
+                .toList());
+    }
+
+    private String buildKickMessage(String reason) {
+        return String.join("\n", MessagesConfig.getList("kick-screen")
+                .stream()
+                .map(line -> line.replace("%reason%", reason))
                 .toList());
     }
 }

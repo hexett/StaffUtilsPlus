@@ -57,7 +57,6 @@ public class BanLoginListener implements Listener {
                 Punishment ipBan = activeIPBan.get();
                 String kickMessage = buildIPBanKickMessage(ipBan);
                 event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, kickMessage);
-                return;
             }
         } catch (Exception e) {
             // Log error but don't prevent login

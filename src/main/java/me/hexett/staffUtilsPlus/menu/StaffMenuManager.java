@@ -165,16 +165,16 @@ public class StaffMenuManager {
      * @return The ItemStack
      */
     private ItemStack createMenuItem(MenuItem item) {
-        ItemStack itemStack = new ItemStack(item.getMaterial());
+        ItemStack itemStack = new ItemStack(item.material());
         ItemMeta meta = itemStack.getItemMeta();
         
         if (meta != null) {
-            meta.setDisplayName(ColorUtils.translateColorCodes(item.getDisplayName()));
+            meta.setDisplayName(ColorUtils.translateColorCodes(item.displayName()));
             
             List<String> lore = new ArrayList<>();
-            lore.add(ColorUtils.translateColorCodes(item.getDescription()));
+            lore.add(ColorUtils.translateColorCodes(item.description()));
             lore.add("");
-            lore.add(ColorUtils.translateColorCodes("&7Permission: &e" + item.getPermission()));
+            lore.add(ColorUtils.translateColorCodes("&7Permission: &e" + item.permission()));
             
             meta.setLore(lore);
             itemStack.setItemMeta(meta);
@@ -256,13 +256,13 @@ public class StaffMenuManager {
      * @param item The menu item that was clicked
      */
     private void handleMenuItemClick(Player player, MenuItem item) {
-        if (!player.hasPermission(item.getPermission())) {
+        if (!player.hasPermission(item.permission())) {
             player.sendMessage(MessagesConfig.get("errors.no-permission"));
             return;
         }
         
         // Handle different menu items
-        switch (item.getPermission()) {
+        switch (item.permission()) {
             case "staffmenu.notes":
                 // Open notes menu
                 player.sendMessage(ColorUtils.translateColorCodes("&aOpening notes menu..."));
@@ -300,7 +300,7 @@ public class StaffMenuManager {
                 player.sendMessage(ColorUtils.translateColorCodes("&aPlugin management coming soon!"));
                 break;
             default:
-                player.sendMessage(ColorUtils.translateColorCodes("&7Feature coming soon: " + item.getDisplayName()));
+                player.sendMessage(ColorUtils.translateColorCodes("&7Feature coming soon: " + item.displayName()));
                 break;
         }
     }

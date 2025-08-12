@@ -329,10 +329,10 @@ public class SQLDatabase implements Database {
         runAsync(() -> {
             String sql = "INSERT INTO notes (target_uuid, issuer_uuid, content, timestamp) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setString(1, note.getTarget().toString());
-                ps.setString(2, note.getIssuer() != null ? note.getIssuer().toString() : null);
-                ps.setString(3, note.getContent());
-                ps.setLong(4, note.getTimestamp());
+                ps.setString(1, note.target().toString());
+                ps.setString(2, note.issuer() != null ? note.issuer().toString() : null);
+                ps.setString(3, note.content());
+                ps.setLong(4, note.timestamp());
                 ps.executeUpdate();
             } catch (SQLException e) {
                 plugin.getLogger().warning("Failed to insert note: " + e.getMessage());

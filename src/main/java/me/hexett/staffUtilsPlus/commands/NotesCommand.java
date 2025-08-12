@@ -106,12 +106,12 @@ public class NotesCommand extends BaseCommand {
 
         sendMessage(sender, MessagesConfig.get("notes.header").replace("%target%", targetName));
         for (Note note : notes) {
-            String issuerName = getPlayerName(note.getIssuer());
-            String timestamp = formatTimestamp(note.getTimestamp());
+            String issuerName = getPlayerName(note.issuer());
+            String timestamp = formatTimestamp(note.timestamp());
             
             String noteMessage = MessagesConfig.get("notes.format")
-                    .replace("%id%", String.valueOf(note.getId()))
-                    .replace("%content%", note.getContent())
+                    .replace("%id%", String.valueOf(note.id()))
+                    .replace("%content%", note.content())
                     .replace("%issuer%", issuerName)
                     .replace("%timestamp%", timestamp);
             

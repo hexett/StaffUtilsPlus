@@ -31,8 +31,8 @@ public class LocalDatabase implements Database {
     private final ReentrantLock lock;
 
     private Map<UUID, List<Punishment>> punishments;
-    private Map<UUID, List<Note>> notes = new HashMap<>();
-    private Map<UUID, List<Warning>> warnings = new HashMap<>();
+    private final Map<UUID, List<Note>> notes = new HashMap<>();
+    private final Map<UUID, List<Warning>> warnings = new HashMap<>();
 
     /**
      * Create a new LocalDatabase instance.
@@ -205,7 +205,7 @@ public class LocalDatabase implements Database {
         if (note == null) return;
         lock.lock();
         try {
-            notes.computeIfAbsent(note.getTarget(), k -> new ArrayList<>()).add(note);
+            notes.computeIfAbsent(note.target(), k -> new ArrayList<>()).add(note);
             saveAll();
         } finally {
             lock.unlock();
@@ -218,7 +218,7 @@ public class LocalDatabase implements Database {
         try {
             List<Note> targetNotes = notes.get(target);
             if (targetNotes != null) {
-                targetNotes.removeIf(n -> n.getId() == noteId);
+                targetNotes.removeIf(n -> n.id() == noteId);
                 saveAll();
             }
         } finally {
@@ -242,7 +242,7 @@ public class LocalDatabase implements Database {
         try {
             for (List<Note> noteList : notes.values()) {
                 for (Note note : noteList) {
-                    if (note.getId() == noteId) return note;
+                    if (note.id() == noteId) return note;
                 }
             }
             return null;

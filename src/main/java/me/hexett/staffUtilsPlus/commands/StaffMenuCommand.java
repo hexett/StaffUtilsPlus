@@ -30,12 +30,11 @@ public class StaffMenuCommand extends BaseCommand {
 
     @Override
     protected boolean execute(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sendMessage(sender, MessagesConfig.get("errors.player-only"));
             return true;
         }
 
-        Player player = (Player) sender;
         menuManager.openMainMenu(player);
         return true;
     }

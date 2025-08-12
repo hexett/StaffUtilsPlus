@@ -37,6 +37,8 @@ public interface PunishmentService {
      * @return true if the player is banned, false otherwise
      */
     boolean isBanned(UUID target);
+
+    void kick(UUID issuer, UUID target, String reason);
     
     /**
      * Get the active punishment of a specific type for a player.

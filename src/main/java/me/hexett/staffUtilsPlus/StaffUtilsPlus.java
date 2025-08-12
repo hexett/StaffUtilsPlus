@@ -125,6 +125,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
         // Register all commands
         CommandRegistry.registerCommand("ban", new BanCommand(), "tempban");
         CommandRegistry.registerCommand("unban", new UnbanCommand());
+        CommandRegistry.registerCommand("kick", new KickCommand());
         CommandRegistry.registerCommand("mute", new MuteCommand(), "tempmute");
         CommandRegistry.registerCommand("unmute", new UnmuteCommand());
         CommandRegistry.registerCommand("ipban", new IPBanCommand());
