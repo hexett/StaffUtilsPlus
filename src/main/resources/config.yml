@@ -1,0 +1,135 @@
+# =============================================================================================== #
+# _____   _              __    __   _    _   _     _   _         _____    _                       #
+# / ____| | |            / _|  / _| | |  | | | |   (_) | |       |  __ \  | |                     #
+# | (___   | |_    __ _  | |_  | |_  | |  | | | |_   _  | |  ___  | |__) | | |       _   _   ___  #
+# \___ \  | __|  / _` | |  _| |  _| | |  | | | __| | | | | / __| |  ___/  | |      | | | | / __|  #
+# ____) | | |_  | (_| | | |   | |   | |__| | | |_  | | | | \__ \ | |      | |____  |_| | | \__ \  #
+# |_____/   \__|  \__,_| |_|   |_|    \____/   \__|_| |_| |___/ |_|      |______| \__,_| |___/ #
+# =============================================================================================== #
+
+# Debug mode - enables additional logging
+debug-mode: false
+
+# Database Configuration
+database:
+  # Whether to use a database (false = local storage only)
+  enabled: false
+  
+  # Database type: mysql, sqlite
+  type: "mysql"
+  
+  # MySQL Configuration (ignored for SQLite)
+  host: "localhost"
+  port: 3306
+  name: "staffutils"
+  user: "root"
+  pass: "password"
+  
+  # Connection pool settings (MySQL only)
+  connection-pool:
+    min-connections: 2
+    max-connections: 10
+    connection-timeout: 30000
+    idle-timeout: 600000
+
+# Punishment Settings
+punishments:
+  # Default ban reasons
+  default-reasons:
+    ban:
+      - "Griefing"
+      - "Hacking/Cheating"
+      - "Inappropriate behavior"
+      - "Spam"
+      - "Harassment"
+      - "Advertising"
+    mute:
+      - "Spam"
+      - "Inappropriate language"
+      - "Harassment"
+      - "Advertising"
+    ipban:
+      - "Griefing"
+      - "Hacking/Cheating"
+      - "Inappropriate behavior"
+      - "Spam"
+      - "Harassment"
+      - "Advertising"
+      - "VPN/Proxy abuse"
+  
+  # Auto-expiration settings
+  auto-expiration:
+    enabled: true
+    check-interval: 300 # seconds (5 minutes)
+  
+  # Notification settings
+  notifications:
+    broadcast-bans: true
+    broadcast-mutes: true
+    broadcast-ipbans: true
+    broadcast-kicks: true
+    permission-node: "staffutils.notify"
+
+# Command Settings
+commands:
+  # Command aliases
+  aliases:
+    ban: ["tempban"]
+    mute: ["tempmute"]
+    ipban: ["tempipban"]
+    help: ["h", "?", "staffhelp"]
+    reload: ["staffreload"]
+  
+  # Tab completion settings
+  tab-completion:
+    max-suggestions: 20
+    include-offline-players: true
+
+# Storage Settings
+storage:
+  # Local storage file (used when database is disabled)
+  local-file: "data.yml"
+  
+  # Backup settings
+  backup:
+    enabled: true
+    interval: 86400 # seconds (24 hours)
+    max-backups: 7
+    backup-folder: "backups"
+
+# Logging Settings
+logging:
+  # Log file settings
+  file:
+    enabled: true
+    max-size: "10MB"
+    max-files: 5
+  
+  # Console logging
+  console:
+    enabled: true
+    level: "INFO"
+  
+  # Log specific events
+  events:
+    bans: true
+    unbans: true
+    mutes: true
+    unmutes: true
+    ipbans: true
+    unbanips: true
+    kicks: true
+    reloads: true
+
+# Performance Settings
+performance:
+  # Cache settings
+  cache:
+    enabled: true
+    max-size: 1000
+    expire-after-write: 300 # seconds (5 minutes)
+  
+  # Async operations
+  async:
+    database-operations: true
+    punishment-applications: true
