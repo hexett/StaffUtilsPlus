@@ -21,6 +21,13 @@ errors:
     not-enabled: "&cDatabase is not enabled in configuration!"
     incomplete-info: "&cIncomplete database configuration! Check your config.yml"
 
+# Vanish Messages
+vanish:
+  join-message: "&e%player% has left the server."
+  leave-message: "&e%player% has joined the server."
+  success: "&aYou are now completely vanished."
+  unvanish-success: "&aYou are now visible."
+
 # Punishment Messages
 punishments:
   ban:

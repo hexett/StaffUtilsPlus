@@ -26,3 +26,6 @@ database:
   pass: "password"
 
 
+vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake join/leave message.
+
+

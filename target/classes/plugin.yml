@@ -1,11 +1,12 @@
 # StaffUtilsPlus Plugin Configuration
 name: StaffUtilsPlus
-version: 1.0.0
+version: 1.0.1
 main: me.hexett.staffUtilsPlus.StaffUtilsPlus
 api-version: 1.21
 description: A comprehensive staff utilities plugin for Minecraft servers
 author: Hexett
 website: https://github.com/hexett/StaffUtilsPlus
+depend: [ProtocolLib]
 
 # Commands
 commands:
@@ -59,6 +60,11 @@ commands:
     usage: /notes <player> [add/remove] [content/id]
     permission: staffutils.notes
     permission-message: "&cYou don't have permission to use this command!"
+
+  vanish:
+    description: Puts a player in vanish
+    permission: staffutils.vanish
+    permission-message: "&cYou don't have permission to use this command!"
   
   warnings:
     description: Manage player warnings
@@ -86,6 +92,8 @@ commands:
     permission: staffutils.reload
     permission-message: "&cYou don't have permission to use this command!"
 
+
+
 # Permissions
 permissions:
   staffutils.*:
@@ -106,6 +114,7 @@ permissions:
       staffutils.notify.ban: true
       staffutils.notify.mute: true
       staffutils.notify.ipban: true
+      staffutils.vanish: true
     default: op
   
   staffutils.ban:
@@ -170,4 +179,8 @@ permissions:
 
   staffutils.notify.kick:
     description: Revieves kick notifications
+    default: op
+
+  staffutils.vanish:
+    description: Allows players to enter vanish and see vanished players.
     default: op

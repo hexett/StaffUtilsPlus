@@ -1,11 +1,20 @@
 package me.hexett.staffUtilsPlus;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import me.hexett.staffUtilsPlus.commands.punish.*;
+import me.hexett.staffUtilsPlus.commands.util.HelpCommand;
+import me.hexett.staffUtilsPlus.commands.util.NotesCommand;
+import me.hexett.staffUtilsPlus.commands.util.ReloadCommand;
+import me.hexett.staffUtilsPlus.commands.util.VanishCommand;
 import me.hexett.staffUtilsPlus.db.Database;
 import me.hexett.staffUtilsPlus.db.LocalDatabase;
 import me.hexett.staffUtilsPlus.db.SQLDatabase;
 import me.hexett.staffUtilsPlus.impl.PunishmentServiceImpl;
+import me.hexett.staffUtilsPlus.impl.VanishServiceImpl;
 import me.hexett.staffUtilsPlus.service.ServiceRegistry;
 import me.hexett.staffUtilsPlus.service.punishments.PunishmentService;
+import me.hexett.staffUtilsPlus.service.vanish.VanishService;
 import me.hexett.staffUtilsPlus.utils.ColorUtils;
 import me.hexett.staffUtilsPlus.utils.MessagesConfig;
 import me.hexett.staffUtilsPlus.commands.*;
@@ -32,12 +41,14 @@ public final class StaffUtilsPlus extends JavaPlugin {
     private static PunishmentService punishmentService;
     private static boolean debugMode;
     private StaffMenuManager menuManager;
+    private ProtocolManager protocolManager;
 
     private final Logger log = getLogger();
 
     @Override
     public void onEnable() {
         instance = this;
+        protocolManager = ProtocolLibrary.getProtocolManager();
         saveDefaultConfig();
         debugMode = getConfig().getBoolean("debug-mode", false);
 
@@ -105,12 +116,14 @@ public final class StaffUtilsPlus extends JavaPlugin {
         // Initialize new services
         NoteService noteService = new NoteServiceImpl(database, this);
         WarningService warningService = new WarningServiceImpl(database, punishmentService, this);
+        VanishService vanishService = new VanishServiceImpl();
 
         ServiceRegistry.register(Database.class, database);
         ServiceRegistry.register(PunishmentService.class, punishmentService);
         ServiceRegistry.register(NoteService.class, noteService);
         ServiceRegistry.register(WarningService.class, warningService);
-        
+        ServiceRegistry.register(VanishService.class, vanishService);
+
         // Register commands
         registerCommands();
         
@@ -135,8 +148,9 @@ public final class StaffUtilsPlus extends JavaPlugin {
         // CommandRegistry.registerCommand("staffmenu", new StaffMenuCommand(menuManager));
         CommandRegistry.registerCommand("help", new HelpCommand());
         CommandRegistry.registerCommand("reload", new ReloadCommand());
+        CommandRegistry.registerCommand("vanish", new VanishCommand());
         
-        log.info("Registered " + CommandRegistry.getCommandCount() + " commands");
+        log.info("Registered " + CommandRegistry.getCommandCount() + " commands.");
     }
 
     /**
@@ -147,6 +161,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MuteListener(), this);
         getServer().getPluginManager().registerEvents(new IPAddressListener(), this);
         getServer().getPluginManager().registerEvents(new MenuClickListener(menuManager), this);
+        getServer().getPluginManager().registerEvents(new VanishListeners(), this);
         
         log.info("Registered listeners for bans, IP bans, mutes, and menus");
     }
@@ -195,5 +210,9 @@ public final class StaffUtilsPlus extends JavaPlugin {
      */
     public void reloadMessages() {
         MessagesConfig.load(this);
+    }
+
+    public ProtocolManager getProtocolManager() {
+        return protocolManager;
     }
 }
