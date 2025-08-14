@@ -14,6 +14,7 @@
 - **Player Notes & Warnings**: Add, view, and manage notes and warnings for players.
 - **Advanced Staff Menu**: GUI-based staff menu for quick access to moderation tools (coming soon).
 - **Database & Local Storage**: Supports MySQL, SQLite, or local YAML storage.
+- **WhoIs and CommandSpy:** Lets staff see other players' commands and other info about them.
 - **Auto-Expiration**: Automatic expiration for temporary punishments.
 - **Notifications**: Broadcast and permission-based notifications for staff actions.
 - **Performance & Logging**: Async operations, caching, and detailed logging.
@@ -70,20 +71,22 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 
 ### Main Commands
 
-| Command                | Description                        | Aliases         | Permission           |
-|------------------------|------------------------------------|-----------------|----------------------|
-| `/ban <player> [reason] [duration]`      | Ban a player                | `/tempban`      | `staffutils.ban`     |
-| `/unban <player>`      | Unban a player                     |                 | `staffutils.unban`   |
-| `/kick <player> [reason]`      | Kick a Player              |              | `staffutils.kick`  
-| `/mute <player> [reason] [duration]`     | Mute a player               | `/tempmute`     | `staffutils.mute`    |
-| `/unmute <player>`     | Unmute a player                    |                 | `staffutils.unmute`  |
-| `/ipban <player> [reason] [duration]`    | IP ban a player             | `/tempipban`    | `staffutils.ipban`   |
-| `/unbanip <ip-address>`| Unban an IP address                |                 | `staffutils.unbanip` |
-| `/vanish`              | Makes the sender invisible to other players.    |    | `staffutils.vanish`  |
-| `/notes <player> [add/remove] [content/id]` | Manage player notes      |                 | `staffutils.notes`   |
-| `/warnings <player> [add/remove] [reason/severity/id]` | Manage player warnings | | `staffutils.warnings` |
-| `/help [page]`         | Show help information              | `/h`, `/?`      | `staffutils.help`    |
-| `/reload`              | Reload the plugin configuration    | `/staffreload`  | `staffutils.reload`  |
+| Command                                                | Description                                  | Aliases     | Permission              |
+|--------------------------------------------------------|----------------------------------------------|-------------|-------------------------|
+| `/ban <player> [reason] [duration]`                    | Ban a player                                 | `/tempban`  | `staffutils.ban`        |
+| `/unban <player>`                                      | Unban a player                               |             | `staffutils.unban`      |
+| `/kick <player> [reason]`                              | Kick a Player                                |          | `staffutils.kick`       
+| `/mute <player> [reason] [duration]`                   | Mute a player                                | `/tempmute` | `staffutils.mute`       |
+| `/unmute <player>`                                     | Unmute a player                              |             | `staffutils.unmute`     |
+| `/ipban <player> [reason] [duration]`                  | IP ban a player                              | `/tempipban` | `staffutils.ipban`      |
+| `/commandSpy`                                          | Spys on a player's commands                  |   | `staffutils.commandspy` |
+| `/whois`                                               | Shows info on a player                       |   | `staffutils.whois.*`    |
+| `/unbanip <ip-address>`                                | Unban an IP address                          |             | `staffutils.unbanip`    |
+| `/vanish`                                              | Makes the sender invisible to other players. |   | `staffutils.vanish`     |
+| `/notes <player> [add/remove] [content/id]`            | Manage player notes                          |             | `staffutils.notes`      |
+| `/warnings <player> [add/remove] [reason/severity/id]` | Manage player warnings                       | | `staffutils.warnings`   |
+| `/help [page]`                                         | Show help information                        | `/h`, `/?`  | `staffutils.help`       |
+| `/staffutilsplus`                                      | Plugin base command                          |  | `none`                   |
 
 > **Note:** The advanced staff menu GUI is in development and will be enabled in a future update.
 
@@ -103,6 +106,7 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 - `staffutils.warnings` — Manage player warnings
 - `staffutils.menu` — Access staff menu (future)
 - `staffutils.reload` — Reload plugin
+- `staffutils.whois.*` — Shows player info
 - `staffutils.debug` — Debug commands
 - `staffutils.notify.*` — Receive notifications for bans, mutes, IP bans
 
