@@ -1,12 +1,10 @@
-package me.hexett.staffUtilsPlus.commands.util;
+package me.hexett.staffUtilsPlus.commands.staff;
 
 import me.hexett.staffUtilsPlus.commands.BaseCommand;
 import me.hexett.staffUtilsPlus.service.ServiceRegistry;
 import me.hexett.staffUtilsPlus.service.vanish.VanishService;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class VanishCommand extends BaseCommand {
 

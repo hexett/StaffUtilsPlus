@@ -8,11 +8,13 @@ C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\st
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\punish\UnbanIPCommand.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\punish\UnmuteCommand.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\punish\WarningsCommand.java
+C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\staff\CommandSpy.java
+C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\staff\VanishCommand.java
+C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\staff\WhoIsCommand.java
+C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\StaffUtilsCommand.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\util\HelpCommand.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\util\NotesCommand.java
-C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\util\ReloadCommand.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\util\StaffMenuCommand.java
-C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\commands\util\VanishCommand.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\db\Database.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\db\LocalDatabase.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\db\SQLDatabase.java
@@ -21,6 +23,7 @@ C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\st
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\impl\VanishServiceImpl.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\impl\WarningServiceImpl.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\listeners\BanLoginListener.java
+C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\listeners\CommandSpyListeners.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\listeners\IPAddressListener.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\listeners\MenuClickListener.java
 C:\Users\Emerson Tomko\Desktop\Plugins\StaffUtilsPlus\src\main\java\me\hexett\staffUtilsPlus\listeners\MuteListener.java

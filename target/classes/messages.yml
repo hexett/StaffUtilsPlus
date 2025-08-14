@@ -28,6 +28,11 @@ vanish:
   success: "&aYou are now completely vanished."
   unvanish-success: "&aYou are now visible."
 
+commandspy:
+  enable: "&aCommandSpy enabled for %player%"
+  disable: "&cCommandSpy disabled for %player%"
+  message: "&8[&cCS&8] %sender%: %command%"
+
 # Punishment Messages
 punishments:
   ban:

@@ -1,10 +1,17 @@
 package me.hexett.staffUtilsPlus.impl;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import me.hexett.staffUtilsPlus.StaffUtilsPlus;
 import me.hexett.staffUtilsPlus.service.vanish.HideItems;
 import me.hexett.staffUtilsPlus.service.vanish.VanishService;
 import me.hexett.staffUtilsPlus.utils.ColorUtils;
 import me.hexett.staffUtilsPlus.utils.MessagesConfig;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -12,7 +19,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class VanishServiceImpl implements VanishService {
@@ -35,7 +45,7 @@ public class VanishServiceImpl implements VanishService {
             } else {
                 Map<String, String> placeholder = new HashMap<>();
                 placeholder.put("player", player.getName());
-                Bukkit.broadcastMessage(MessagesConfig.get("vanish.leave-message"));
+                Bukkit.broadcastMessage(MessagesConfig.get("vanish.leave-message").replace("player%", player.getName()));
             }
         }
 
@@ -55,6 +65,7 @@ public class VanishServiceImpl implements VanishService {
         hideItems.hideEquipment(player, viewers);
 
         player.sendMessage(MessagesConfig.get("vanish.success"));
+        showMessageTask(player);
     }
 
     @Override
@@ -68,7 +79,7 @@ public class VanishServiceImpl implements VanishService {
             } else {
                 Map<String, String> placeholder = new HashMap<>();
                 placeholder.put("player", player.getName());
-                Bukkit.broadcastMessage(MessagesConfig.get("vanish.join-message"));
+                Bukkit.broadcastMessage(MessagesConfig.get("vanish.join-message").replace("player", player.getName()));
             }
         }
 
@@ -80,7 +91,11 @@ public class VanishServiceImpl implements VanishService {
         player.removePotionEffect(PotionEffectType.INVISIBILITY);
         player.removeMetadata("vanished", plugin);
 
+        Integer taskId = vanishTasks.remove(player.getUniqueId());
+        if (taskId != null) Bukkit.getScheduler().cancelTask(taskId);
+
         player.sendMessage(MessagesConfig.get("vanish.unvanish-success"));
+
     }
 
     @Override
@@ -91,4 +106,22 @@ public class VanishServiceImpl implements VanishService {
     public Set<UUID> getVanishedPlayers() {
         return vanished;
     }
+
+    public void showMessageTask(Player player) {
+
+        int taskId = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
+            @Override
+            public void run() {
+                if (player.isOnline() && isVanished(player)) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                            new TextComponent(ColorUtils.translateColorCodes("&cVanished &8(&a&l✓&r&8) &cTPS: &a" + plugin.getServer().getServerTickManager().getTickRate()
+                            )));
+                }
+            }
+        }, 0L, 20L).getTaskId();
+
+        vanishTasks.put(player.getUniqueId(), taskId);
+    }
+
+
 }

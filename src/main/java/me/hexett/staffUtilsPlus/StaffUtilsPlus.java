@@ -3,10 +3,11 @@ package me.hexett.staffUtilsPlus;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import me.hexett.staffUtilsPlus.commands.punish.*;
+import me.hexett.staffUtilsPlus.commands.staff.CommandSpy;
+import me.hexett.staffUtilsPlus.commands.staff.WhoIsCommand;
 import me.hexett.staffUtilsPlus.commands.util.HelpCommand;
 import me.hexett.staffUtilsPlus.commands.util.NotesCommand;
-import me.hexett.staffUtilsPlus.commands.util.ReloadCommand;
-import me.hexett.staffUtilsPlus.commands.util.VanishCommand;
+import me.hexett.staffUtilsPlus.commands.staff.VanishCommand;
 import me.hexett.staffUtilsPlus.db.Database;
 import me.hexett.staffUtilsPlus.db.LocalDatabase;
 import me.hexett.staffUtilsPlus.db.SQLDatabase;
@@ -42,6 +43,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
     private static boolean debugMode;
     private StaffMenuManager menuManager;
     private ProtocolManager protocolManager;
+    private CommandSpyListeners spyListeners;
 
     private final Logger log = getLogger();
 
@@ -112,6 +114,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
     private void initServices() {
         punishmentService = new PunishmentServiceImpl(database, this);
         menuManager = new StaffMenuManager();
+        spyListeners = new CommandSpyListeners();
         
         // Initialize new services
         NoteService noteService = new NoteServiceImpl(database, this);
@@ -123,6 +126,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
         ServiceRegistry.register(NoteService.class, noteService);
         ServiceRegistry.register(WarningService.class, warningService);
         ServiceRegistry.register(VanishService.class, vanishService);
+        ServiceRegistry.register(CommandSpyListeners.class, spyListeners);
 
         // Register commands
         registerCommands();
@@ -135,6 +139,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
      * Register all plugin commands.
      */
     private void registerCommands() {
+
         // Register all commands
         CommandRegistry.registerCommand("ban", new BanCommand(), "tempban");
         CommandRegistry.registerCommand("unban", new UnbanCommand());
@@ -147,9 +152,11 @@ public final class StaffUtilsPlus extends JavaPlugin {
         CommandRegistry.registerCommand("warnings", new WarningsCommand());
         // CommandRegistry.registerCommand("staffmenu", new StaffMenuCommand(menuManager));
         CommandRegistry.registerCommand("help", new HelpCommand());
-        CommandRegistry.registerCommand("reload", new ReloadCommand());
+        CommandRegistry.registerCommand("staffutilsplus", new StaffUtilsCommand());
         CommandRegistry.registerCommand("vanish", new VanishCommand());
-        
+        CommandRegistry.registerCommand("commandspy", new CommandSpy(spyListeners), "cs");
+        CommandRegistry.registerCommand("whois", new WhoIsCommand());
+
         log.info("Registered " + CommandRegistry.getCommandCount() + " commands.");
     }
 
@@ -162,6 +169,8 @@ public final class StaffUtilsPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new IPAddressListener(), this);
         getServer().getPluginManager().registerEvents(new MenuClickListener(menuManager), this);
         getServer().getPluginManager().registerEvents(new VanishListeners(), this);
+        getServer().getPluginManager().registerEvents(spyListeners, this);
+
         
         log.info("Registered listeners for bans, IP bans, mutes, and menus");
     }
