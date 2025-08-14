@@ -4,6 +4,8 @@
 
 > **A comprehensive, modern, and highly configurable staff utilities plugin for Minecraft servers.**
 
+### Note that versions 1.1.0+ of StaffUtilsPlus will require [ProtocolLib](https://github.com/dmulloy2/ProtocolLib/releases) to function.
+
 ---
 
 ## ✨ Features
@@ -39,21 +41,23 @@ Example `config.yml` snippet:
 # Debug mode - enables additional logging
 debug-mode: false
 
+# Database Configuration
 database:
+  # Whether to use a database (false = local storage only)
   enabled: false
-  type: "mysql" # or "sqlite"
+  
+  # Database type: mysql, sqlite
+  type: "mysql"
+  
+  # MySQL Configuration (ignored for SQLite)
   host: "localhost"
   port: 3306
   name: "staffutils"
   user: "root"
   pass: "password"
 
-punishments:
-  default-reasons:
-    ban: ["Griefing", "Hacking/Cheating", "Spam"]
-  auto-expiration:
-    enabled: true
-    check-interval: 300
+
+vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake join/leave message.
 ```
 
 ---
@@ -70,10 +74,12 @@ punishments:
 |------------------------|------------------------------------|-----------------|----------------------|
 | `/ban <player> [reason] [duration]`      | Ban a player                | `/tempban`      | `staffutils.ban`     |
 | `/unban <player>`      | Unban a player                     |                 | `staffutils.unban`   |
+| `/kick <player> [reason]`      | Kick a Player              |              | `staffutils.kick`  
 | `/mute <player> [reason] [duration]`     | Mute a player               | `/tempmute`     | `staffutils.mute`    |
 | `/unmute <player>`     | Unmute a player                    |                 | `staffutils.unmute`  |
 | `/ipban <player> [reason] [duration]`    | IP ban a player             | `/tempipban`    | `staffutils.ipban`   |
 | `/unbanip <ip-address>`| Unban an IP address                |                 | `staffutils.unbanip` |
+| `/vanish`              | Makes the sender invisible to other players.    |    | `staffutils.vanish`  |
 | `/notes <player> [add/remove] [content/id]` | Manage player notes      |                 | `staffutils.notes`   |
 | `/warnings <player> [add/remove] [reason/severity/id]` | Manage player warnings | | `staffutils.warnings` |
 | `/help [page]`         | Show help information              | `/h`, `/?`      | `staffutils.help`    |
@@ -92,6 +98,7 @@ punishments:
 - `staffutils.unmute` — Unmute players
 - `staffutils.ipban` — IP ban players
 - `staffutils.unbanip` — Unban IP addresses
+- `staffutils.vanish` — Allows players to enter vanish.
 - `staffutils.notes` — Manage player notes
 - `staffutils.warnings` — Manage player warnings
 - `staffutils.menu` — Access staff menu (future)
@@ -104,7 +111,7 @@ punishments:
 ## 🧩 Dependencies
 
 - [Spigot 1.21+](https://www.spigotmc.org/)
-- [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/) (optional, for advanced features)
+- [ProtocolLib](https://github.com/dmulloy2/ProtocolLib/releases)
 - Java 21
 
 ---
