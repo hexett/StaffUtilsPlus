@@ -1,0 +1,49 @@
+name: Build, Test, and Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Build and run tests
+        run: mvn clean verify
+
+      - name: Publish to Modrinth
+        if: success()
+        uses: Kira-NT/mc-publish@v3
+        with:
+          modrinth-id: hTBSNc8g
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          files: |
+            target/StaffUtilsPlus-*.jar
+            !target/original-*.jar
+
+          name: ${{ github.ref_name }}
+          version: ${{ github.ref_name }}
+
+          loaders: |
+            paper
+            spigot
+            purpur
+            bukkit
+
+          game-versions: |
+            >=1.21.1
+
+          modrinth-body-path: README.md
