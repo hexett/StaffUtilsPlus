@@ -1,6 +1,8 @@
-# StaffUtilsPlus Plugin Configuration
+# ========================================
+#         StaffUtilsPlus Plugin
+# ========================================
 name: StaffUtilsPlus
-version: 1.2.0
+version: 1.3.0
 main: me.hexett.staffUtilsPlus.StaffUtilsPlus
 api-version: 1.21
 description: A comprehensive staff utilities plugin for Minecraft servers
@@ -8,77 +10,116 @@ author: Hexett
 website: https://github.com/hexett/StaffUtilsPlus
 depend: [ProtocolLib]
 
-# ============================== Commands ============================== #
+# ========================================
+#              COMMANDS
+# ========================================
 
 commands:
+  # ┌─────────────────────────────────┐
+  # │     Punishment Commands         │
+  # └─────────────────────────────────┘
   ban:
     description: Ban a player from the server
     usage: /ban <player> [reason] [duration]
     aliases: [tempban]
     permission: staffutils.ban
     permission-message: "&cYou don't have permission to use this command!"
-  kick:
-    description: Kick a player from the server
-    usage: /kick <player>
-    permission: staffutils.kick
-    permission-message: "&cYou don't have permission to use this command!"
+
   unban:
     description: Unban a player from the server
     usage: /unban <player>
     permission: staffutils.unban
     permission-message: "&cYou don't have permission to use this command!"
+
+  kick:
+    description: Kick a player from the server
+    usage: /kick <player>
+    permission: staffutils.kick
+    permission-message: "&cYou don't have permission to use this command!"
+
   mute:
     description: Mute a player on the server
     usage: /mute <player> [reason] [duration]
     aliases: [tempmute]
     permission: staffutils.mute
     permission-message: "&cYou don't have permission to use this command!"
+
   unmute:
     description: Unmute a player on the server
     usage: /unmute <player>
     permission: staffutils.unmute
     permission-message: "&cYou don't have permission to use this command!"
+
   ipban:
     description: IP ban a player from the server
     usage: /ipban <player> [reason] [duration]
     aliases: [tempipban]
     permission: staffutils.ipban
     permission-message: "&cYou don't have permission to use this command!"
+
   unbanip:
     description: Unban an IP address from the server
     usage: /unbanip <ip-address>
     permission: staffutils.unbanip
     permission-message: "&cYou don't have permission to use this command!"
-  commandspy:
-    description: Allows staff to see other players' commands.
-    aliases: [cs]
-    usage: /commandspy
-    permission: staffutils.commandspy
-    permission-message: "&cYou don't have permission to use this command!"
-  whois:
-    description: Shows staff player details.
-    usage: /whois <player>
-    permission: staffutils.whois
-    permission-message: "&cYou don't have permission to use this command!"
+
+  # ┌─────────────────────────────────┐
+  # │     Player Management           │
+  # └─────────────────────────────────┘
   notes:
     description: Manage player notes
     usage: /notes <player> [add/remove] [content/id]
     permission: staffutils.notes
     permission-message: "&cYou don't have permission to use this command!"
-  vanish:
-    description: Puts a player in vanish
-    permission: staffutils.vanish
-    permission-message: "&cYou don't have permission to use this command!"
+
   warnings:
     description: Manage player warnings
     usage: /warnings <player> [add/remove] [reason/severity/id]
     permission: staffutils.warnings
     permission-message: "&cYou don't have permission to use this command!"
-#  staffmenu:
-#    description: Open the staff menu
-#    usage: /staffmenu
-#    permission: staffutils.menu
-#    permission-message: "&cYou don't have permission to use this command!"
+
+  history:
+    description: Shows the punishment history of a player
+    usage: /history <player>
+    permission: staffutils.history
+    permission-message: "&cYou don't have permission to use this command!"
+
+  blame:
+    description: View punishments issued by a player
+    usage: /blame <player>
+    permission: staffutils.blame
+    permission-message: "&cYou don't have permission to use this command!"
+
+  alts:
+    description: Shows the alt accounts of a player
+    usage: /alts <player>
+    permission: staffutils.alts
+    permission-message: "&cYou don't have permission to use this command!"
+
+  # ┌─────────────────────────────────┐
+  # │     Staff Utilities             │
+  # └─────────────────────────────────┘
+  vanish:
+    description: Puts a player in vanish
+    permission: staffutils.vanish
+    permission-message: "&cYou don't have permission to use this command!"
+
+  commandspy:
+    description: Allows staff to see other players' commands
+    aliases: [cs]
+    usage: /commandspy
+    permission: staffutils.commandspy
+    permission-message: "&cYou don't have permission to use this command!"
+
+  whois:
+    description: Shows staff player details
+    usage: /whois <player>
+    permission: staffutils.whois
+    permission-message: "&cYou don't have permission to use this command!"
+
+  # ┌─────────────────────────────────┐
+  # │     General Commands            │
+  # └─────────────────────────────────┘
   help:
     description: Show help information
     usage: /help [page]
@@ -87,51 +128,56 @@ commands:
     permission-message: "&cYou don't have permission to use this command!"
   staffutilsplus:
     description: The base plugin command
-    usage: /staffutilsplus
+    usage: /staffutilsplus 
+  
+  # Disabled for future implementation
+    #staffmenu:
+    #  description: Open the staff menu
+    #  usage: /staffmenu
+    #  permission: staffutils.menu
+    #  permission-message: "&cYou don't have permission to use this command!"
 
-# ============================== Permissions ============================== #
+# ========================================
+#            PERMISSIONS
+# ========================================
 permissions:
+  # ┌─────────────────────────────────┐
+  # │     Master Permission           │
+  # └─────────────────────────────────┘
   staffutils.*:
     description: Gives access to all StaffUtilsPlus commands
+    default: op
     children:
       staffutils.ban: true
       staffutils.unban: true
+      staffutils.kick: true
       staffutils.mute: true
       staffutils.unmute: true
       staffutils.ipban: true
-      staffutils.kick: true
       staffutils.unbanip: true
       staffutils.notes: true
       staffutils.warnings: true
+      staffutils.history: true
+      staffutils.blame: true
+      staffutils.alts: true
+      staffutils.alts.notify: true
+      staffutils.vanish: true
+      staffutils.commandspy: true
+      staffutils.whois.*: true
       staffutils.menu: true
       staffutils.reload: true
       staffutils.debug: true
       staffutils.notify.ban: true
+      staffutils.notify.kick: true
       staffutils.notify.mute: true
       staffutils.notify.ipban: true
-      staffutils.vanish: true
-      staffutils.commandspy: true
-      staffutils.whois.*: true
-    default: op
 
+  # ┌─────────────────────────────────┐
+  # │     Punishment Permissions      │
+  # └─────────────────────────────────┘
   staffutils.ban:
     description: Allows banning players
     default: op
-
-  staffutils.whois.*:
-    default: op
-    description: Allows use of all /whois features
-    children:
-      staffutils.whois: true
-      staffutils.whois.ip: true
-
-  staffutils.whois:
-    default: op
-    description: Allows use of /whois
-
-  staffutils.whois.ip:
-    default: op
-    description: Shows IP in /whois
 
   staffutils.unban:
     description: Allows unbanning players
@@ -157,6 +203,9 @@ permissions:
     description: Allows unbanning IP addresses
     default: op
 
+  # ┌─────────────────────────────────┐
+  # │   Player Management Perms       │
+  # └─────────────────────────────────┘
   staffutils.notes:
     description: Allows managing player notes
     default: op
@@ -165,20 +214,57 @@ permissions:
     description: Allows managing player warnings
     default: op
 
-  staffutils.menu:
-    description: Allows accessing the staff menu
+  staffutils.history:
+    description: Allows players to use /history
     default: op
 
-  staffutils.reload:
-    description: Allows reloading the plugin
+  staffutils.blame:
+    description: Allows players to use /blame
     default: op
 
-  staffutils.debug:
-    description: Allows debug commands
+  staffutils.alts:
+    description: Allows players to use /alts
     default: op
 
+  staffutils.alts.notify:
+    description: Receives notifications when players with alts join
+    default: op
+
+  # ┌─────────────────────────────────┐
+  # │    Staff Utility Permissions    │
+  # └─────────────────────────────────┘
+  staffutils.vanish:
+    description: Allows players to enter vanish and see vanished players
+    default: op
+
+  staffutils.commandspy:
+    description: Allows players to toggle CommandSpy
+    default: op
+
+  staffutils.whois.*:
+    description: Allows use of all /whois features
+    default: op
+    children:
+      staffutils.whois: true
+      staffutils.whois.ip: true
+
+  staffutils.whois:
+    description: Allows use of /whois
+    default: op
+
+  staffutils.whois.ip:
+    description: Shows IP in /whois
+    default: op
+
+  # ┌─────────────────────────────────┐
+  # │    Notification Permissions     │
+  # └─────────────────────────────────┘
   staffutils.notify.ban:
     description: Receives ban notifications
+    default: op
+
+  staffutils.notify.kick:
+    description: Receives kick notifications
     default: op
 
   staffutils.notify.mute:
@@ -189,14 +275,17 @@ permissions:
     description: Receives IP ban notifications
     default: op
 
-  staffutils.notify.kick:
-    description: Revieves kick notifications
+  # ┌─────────────────────────────────┐
+  # │    Administrative Permissions   │
+  # └─────────────────────────────────┘
+  staffutils.menu:
+    description: Allows accessing the staff menu
     default: op
 
-  staffutils.vanish:
-    description: Allows players to enter vanish and see vanished players.
+  staffutils.reload:
+    description: Allows reloading the plugin
     default: op
 
-  staffutils.commandspy:
-    description: Allows players to toggle CommandSpy
+  staffutils.debug:
+    description: Allows debug commands
     default: op

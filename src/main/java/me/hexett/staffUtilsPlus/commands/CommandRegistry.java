@@ -1,10 +1,7 @@
 package me.hexett.staffUtilsPlus.commands;
 
 import me.hexett.staffUtilsPlus.StaffUtilsPlus;
-import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 import java.util.Map;

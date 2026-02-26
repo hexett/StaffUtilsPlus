@@ -1,121 +1,198 @@
-# StaffUtilsPlus Messages Configuration
-# Use & for color codes, %variable% for placeholders
+# ========================================
+#      StaffUtilsPlus Messages Config
+# ========================================
+# Use & for color codes
+# Available placeholders: %variable%
+# Color Guide: &a=green &c=red &e=yellow
+#              &6=gold &7=gray &8=dark_gray
+#              &b=aqua &d=light_purple &f=white
+# ========================================
 
-# Error Messages
+# ┌─────────────────────────────────────┐
+# │      GENERAL CONFIGURATION          │
+# └─────────────────────────────────────┘
+prefix: "&8[&c&lSTAFF&8]"
+
+# ┌─────────────────────────────────────┐
+# │         ERROR MESSAGES              │
+# └─────────────────────────────────────┘
 errors:
-  no-permission: "&cYou don't have permission to use this command!"
-  player-only: "&cThis command can only be used by players!"
-  usage: "&cUsage: %usage%"
-  command-error: "&cAn error occurred while executing this command!"
-  player-not-found: "&cPlayer '%player%' not found!"
-  invalid-duration: "&cInvalid duration format! Use: 1s, 1m, 1h, 1d, 1w, 1M, 1y, or permanent"
-  invalid-ip-address: "&cInvalid IP address format: %ip%"
-  cannot-get-ip: "&cCannot get IP address for %player% (player must be online for IP ban)"
-  invalid-note-id: "&cInvalid note ID!"
-  invalid-warning-id: "&cInvalid warning ID!"
-  invalid-severity: "&cInvalid severity level! Use 1-5"
-  note-content-empty: "&cNote content cannot be empty!"
-  warning-reason-empty: "&cWarning reason cannot be empty!"
-  service-unavailable: "&cService is currently unavailable!"
+  no-permission: "&c&l✖ &cYou don't have permission to use this command!"
+  player-only: "&c&l✖ &cThis command can only be used by players!"
+  usage: "&c&l✖ &cIncorrect usage! &7%usage%"
+  command-error: "&c&l✖ &cAn error occurred while executing this command!"
+  player-not-found: "&c&l✖ &cPlayer &f%player% &ccould not be found!"
+  invalid-duration: "&c&l✖ &cInvalid duration format!\n&7Use: &f1s&7, &f1m&7, &f1h&7, &f1d&7, &f1w&7, &f1M&7, &f1y&7, or &fpermanent"
+  invalid-ip-address: "&c&l✖ &cInvalid IP address format: &f%ip%"
+  cannot-get-ip: "&c&l✖ &cCannot retrieve IP address for &f%player%\n&7(Player must be online for IP ban)"
+  invalid-note-id: "&c&l✖ &cInvalid note ID!"
+  invalid-warning-id: "&c&l✖ &cInvalid warning ID!"
+  invalid-severity: "&c&l✖ &cInvalid severity level! &7Use &f1-5"
+  note-content-empty: "&c&l✖ &cNote content cannot be empty!"
+  warning-reason-empty: "&c&l✖ &cWarning reason cannot be empty!"
+  service-unavailable: "&c&l✖ &cService is currently unavailable! Please try again later."
   database:
-    not-enabled: "&cDatabase is not enabled in configuration!"
-    incomplete-info: "&cIncomplete database configuration! Check your config.yml"
+    not-enabled: "&c&l✖ &cDatabase is not enabled in configuration!"
+    incomplete-info: "&c&l✖ &cIncomplete database configuration!\n&7Please check your &fconfig.yml&7!"
+    not-found: "&c&l✖ &cDatabase service could not be found!\n&7Please check your &fconfig.yml&7!"
 
-# Vanish Messages
+# ┌─────────────────────────────────────┐
+# │         VANISH MESSAGES             │
+# └─────────────────────────────────────┘
 vanish:
-  join-message: "&e%player% has left the server."
-  leave-message: "&e%player% has joined the server."
-  success: "&aYou are now completely vanished."
-  unvanish-success: "&aYou are now visible."
+  join-message: "&e%player% &7has left the server."
+  leave-message: "&e%player% &7has joined the server."
+  success: "&a&l✔ &aYou are now &f&lcompletely invisible&a!"
+  unvanish-success: "&a&l✔ &aYou are now &f&lvisible&a again!"
 
+# ┌─────────────────────────────────────┐
+# │       COMMANDSPY MESSAGES           │
+# └─────────────────────────────────────┘
 commandspy:
-  enable: "&aCommandSpy enabled for %player%"
-  disable: "&cCommandSpy disabled for %player%"
-  message: "&8[&cCS&8] %sender%: %command%"
+  enable: "&a&l✔ &aCommandSpy &f&lenabled &afor &f%player%"
+  disable: "&c&l✖ &cCommandSpy &f&ldisabled &cfor &f%player%"
+  message: "&8[&c&lCS&8] &7%sender%&8: &f%command%"
 
-# Punishment Messages
+# ┌─────────────────────────────────────┐
+# │      PUNISHMENT MESSAGES            │
+# └─────────────────────────────────────┘
 punishments:
   ban:
-    success: "&aSuccessfully banned %target% for: %reason%"
-    already-banned: "&c%target% is already banned!"
+    success: "&a&l✔ &aSuccessfully banned &f%target%\n&7Reason: &f%reason%"
+    already-banned: "&c&l✖ &f%target% &cis already banned!"
     default-reason: "No reason specified"
-    notify: "&c%target% has been banned by %issuer% for: %reason%"
+    notify: "%prefix% &f%target% &7has been &c&lBANNED &7by &e%issuer%\n&7Reason: &f%reason%"
+
   kick:
-    success: "&aSuccessfully kicked %target% for: %reason%"
+    success: "&a&l✔ &aSuccessfully kicked &f%target%\n&7Reason: &f%reason%"
     default-reason: "No reason specified"
-    notify: "&c%target% has been kicked by %issuer% for: %reason%"
+    notify: "%prefix% &f%target% &7has been &e&lKICKED &7by &e%issuer%\n&7Reason: &f%reason%"
+
   unban:
-    success: "&aSuccessfully unbanned %target%"
-    not-banned: "&c%target% is not banned!"
+    success: "&a&l✔ &aSuccessfully unbanned &f%target%"
+    not-banned: "&c&l✖ &f%target% &cis not banned!"
+
   mute:
-    success: "&aSuccessfully muted %target% for: %reason%"
-    already-muted: "&c%target% is already muted!"
+    success: "&a&l✔ &aSuccessfully muted &f%target%\n&7Reason: &f%reason%"
+    already-muted: "&c&l✖ &f%target% &cis already muted!"
     default-reason: "No reason specified"
-    notify: "&c%target% has been muted by %issuer% for: %reason%"
-    chat-blocked: "&cYou are currently muted and cannot send messages."
+    notify: "%prefix% &f%target% &7has been &6&lMUTED &7by &e%issuer%\n&7Reason: &f%reason%"
+    chat-blocked: "&c&l✖ &cYou are currently &f&lMUTED &cand cannot send messages!"
+
   unmute:
-    success: "&aSuccessfully unmuted %target%"
-    not-muted: "&c%target% is not muted!"
+    success: "&a&l✔ &aSuccessfully unmuted &f%target%"
+    not-muted: "&c&l✖ &f%target% &cis not muted!"
+
   ipban:
-    success: "&aSuccessfully IP banned %target% (%ip%) for: %reason%"
-    already-banned: "&cIP address %ip% is already banned!"
+    success: "&a&l✔ &aSuccessfully IP banned &f%target% &7(&c%ip%&7)\n&7Reason: &f%reason%"
+    already-banned: "&c&l✖ &cIP address &f%ip% &cis already banned!"
     default-reason: "No reason specified"
-    notify: "&c%target% has been IP banned by %issuer% (IP: %ip%) for: %reason%"
+    notify: "%prefix% &f%target% &7has been &4&lIP BANNED &7by &e%issuer%\n&7IP: &c%ip% &8| &7Reason: &f%reason%"
+
   unbanip:
-    success: "&aSuccessfully unbanned IP address %ip%"
-    not-banned: "&cIP address %ip% is not banned!"
+    success: "&a&l✔ &aSuccessfully unbanned IP address &f%ip%"
+    not-banned: "&c&l✖ &cIP address &f%ip% &cis not banned!"
 
-# Notes Messages
+  blame:
+    no-punishments: "&e&l⚠ &eNo punishments have been issued by &f%player%&e."
+
+  history:
+    no-punishments: "&e&l⚠ &ePlayer &f%player% &ehas a clean record - no punishments found!"
+
+# ┌─────────────────────────────────────┐
+# │         NOTES MESSAGES              │
+# └─────────────────────────────────────┘
 notes:
-  none: "&7%target% has no notes."
-  header: "&6=== Notes for %target% ==="
-  format: "&7[%id%] &f%content% &7- by %issuer% &7(%timestamp%)"
-  added: "&aAdded note to %target%: &f%content%"
-  removed: "&aRemoved note %id% from %target%"
+  none: "&7&o%target% has no notes on record."
+  header: "&6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&6&l     Notes for %target%\n&6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  format: "&7[&f#%id%&7] &f%content%\n  &8↳ &7By &e%issuer% &8| &7%timestamp%"
+  added: "&a&l✔ &aNote added to &f%target%&a:\n&7&o%content%"
+  removed: "&a&l✔ &aRemoved note &f#%id% &afrom &f%target%"
 
-# Warnings Messages
+# ┌─────────────────────────────────────┐
+# │       WARNINGS MESSAGES             │
+# └─────────────────────────────────────┘
 warnings:
-  none: "&7%target% has no warnings."
-  header: "&6=== Warnings for %target% ==="
-  level: "&cTotal Warning Level: %level%"
-  format: "&7[%id%] &fSeverity %severity%: &f%reason% &7- by %issuer% &7(%timestamp%)"
-  added: "&aAdded warning to %target%: &fSeverity %severity% - %reason%"
-  removed: "&aRemoved warning %id% from %target%"
+  none: "&7&o%target% has no warnings on record."
+  header: "&c&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&c&l   Warnings for %target%\n&c&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  level: "&c&l⚠ &cTotal Warning Level: &f&l%level%"
+  format: "&7[&f#%id%&7] &cSeverity &f%severity%&8: &f%reason%\n  &8↳ &7By &e%issuer% &8| &7%timestamp%"
+  added: "&a&l✔ &aWarning added to &f%target%&a:\n&7Severity &c%severity% &8- &f%reason%"
+  removed: "&a&l✔ &aRemoved warning &f#%id% &afrom &f%target%"
 
-# Help Messages
+# ┌─────────────────────────────────────┐
+# │    ALT ACCOUNT MESSAGES             │
+# └─────────────────────────────────────┘
+alts:
+  no-ip-found: "&c&l✖ &cNo IP address found for &f%player%&c. They may have never joined the server."
+  no-alts-found: "&e&l⚠ &eNo alternative accounts found for &f%player%&e."
+  header: "&b&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&b&l   Alt Accounts for %player%\n&b&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&7IP Address: &f%ip% &8| &7Total Accounts: &f%count%"
+  format: "&8▪ &f%alt% %status%\n  &8↳ &7UUID: &f%uuid%"
+  footer: "&b&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  join-notify: "%prefix% &6&l⚠ &f%player% &7joined with &c%count% &7known alt account(s): &f%alts%"
+
+# ┌─────────────────────────────────────┐
+# │         HELP MESSAGES               │
+# └─────────────────────────────────────┘
 help:
-  no-commands: "&cNo commands available to you!"
+  no-commands: "&c&l✖ &cNo commands are available to you!"
 
-# Reload Messages
+# ┌─────────────────────────────────────┐
+# │        RELOAD MESSAGES              │
+# └─────────────────────────────────────┘
 reload:
-  success: "&aPlugin configuration reloaded successfully!"
-  error: "&cFailed to reload plugin configuration!"
+  success: "&a&l✔ &aPlugin configuration reloaded successfully!"
+  error: "&c&l✖ &cFailed to reload plugin configuration!"
 
-# Ban Screen (shown to banned players)
+# ┌─────────────────────────────────────┐
+# │    DISCONNECT SCREENS (Kick/Ban)    │
+# └─────────────────────────────────────┘
+
+# Ban Screen - Shown to banned players
 ban-screen:
-  - "&c&lYou have been banned from this server!"
+  - "&c&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  - ""
+  - "&c&l        YOU ARE BANNED"
+  - ""
+  - "&c&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
   - ""
   - "&7Reason: &f%reason%"
   - "&7Expires: &f%expires%"
   - ""
-  - "&7If you believe this is a mistake,"
-  - "&7please contact a staff member."
+  - "&8If you believe this is an error,"
+  - "&8please contact a staff member."
+  - ""
+  - "&c&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
 
-# IP Ban Screen (shown to IP banned players)
+# IP Ban Screen - Shown to IP banned players
 ipban-screen:
-  - "&c&lYour IP address has been banned from this server!"
+  - "&4&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  - ""
+  - "&4&l      YOUR IP IS BANNED"
+  - ""
+  - "&4&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
   - ""
   - "&7Reason: &f%reason%"
   - "&7Expires: &f%expires%"
   - ""
-  - "&7If you believe this is a mistake,"
-  - "&7please contact a staff member."
+  - "&8If you believe this is an error,"
+  - "&8please contact a staff member."
+  - ""
+  - "&4&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
 
-# Kick Screen (shown to kicked players)
+# Kick Screen - Shown to kicked players
 kick-screen:
-  - "&c&lYou have been kicked from this server!"
+  - "&e&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  - ""
+  - "&e&l       YOU WERE KICKED"
+  - ""
+  - "&e&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
   - ""
   - "&7Reason: &f%reason%"
   - ""
-  - "&7If you believe this is a mistake,"
-  - "&7please contact a staff member."
+  - "&8If you believe this is an error,"
+  - "&8please contact a staff member."
+  - ""
+  - "&7You may rejoin the server."
+  - ""
+  - "&e&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"

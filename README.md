@@ -8,7 +8,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 - **Ban, Mute, and IP Ban**: Temporarily or permanently ban/mute players, including IP bans.
 - **Player Notes & Warnings**: Add, view, and manage notes and warnings for players.
@@ -22,7 +22,7 @@
 
 ---
 
-## 📦 Installation
+##  Installation
 
 1. **Download** the latest release from [GitHub Releases](https://github.com/hexett/StaffUtilsPlus/releases) or [Modrinth](https://modrinth.com/plugin/staffutilsplus).
 2. **Place** the `StaffUtilsPlus.jar` file into your server's `plugins` folder.
@@ -31,7 +31,7 @@
 
 ---
 
-## ⚙️ Configuration
+## ️ Configuration
 
 - **config.yml**: Main plugin configuration (database, punishments, commands, storage, logging, performance).
 - **messages.yml**: Customize all plugin messages, including color codes and placeholders.
@@ -63,7 +63,7 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 
 ---
 
-## 🚀 Usage
+## Usage
 
 - **All commands** can be run from the console or in-game (unless noted).
 - **Tab completion** and **aliases** are supported for all commands.
@@ -87,12 +87,15 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 | `/warnings <player> [add/remove] [reason/severity/id]` | Manage player warnings                       | | `staffutils.warnings`   |
 | `/help [page]`                                         | Show help information                        | `/h`, `/?`  | `staffutils.help`       |
 | `/staffutilsplus`                                      | Plugin base command                          |  | `none`                   |
+| `/blame`                                               | Shows punishments issued by a player.        |  | `staffutils.blame` |
+| `/history`                                             | Shows a player's punishment history.         |  | `staffutils.history` |
+| `/alts`                                                | Lists a player's known alts by IP            |  | `staffutils.alts` |
 
 > **Note:** The advanced staff menu GUI is in development and will be enabled in a future update.
 
 ---
 
-## 🛡️ Permissions
+## Permissions
 
 - `staffutils.*` — **All plugin permissions** (default: OP)
 - `staffutils.ban` — Ban players
@@ -109,10 +112,13 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 - `staffutils.whois.*` — Shows player info
 - `staffutils.debug` — Debug commands
 - `staffutils.notify.*` — Receive notifications for bans, mutes, IP bans
+- `staffutils.blame` — Enables access to /blame
+- `staffutils.history` — Enables access to /history
+- `staffutils.alts` — Enables access to /alts
 
 ---
 
-## 🧩 Dependencies
+## Dependencies
 
 - [Spigot 1.21+](https://www.spigotmc.org/)
 - [ProtocolLib](https://github.com/dmulloy2/ProtocolLib/releases)
@@ -120,7 +126,7 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 
 ---
 
-## 🙏 Credits
+## Credits
 
 - **Author:** Hexett
 - **Contributors:** See [GitHub Contributors](https://github.com/hexett/StaffUtilsPlus/graphs/contributors)
@@ -128,13 +134,13 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 
 ---
 
-## 💬 Support & Feedback
+## Support & Feedback
 
 - [GitHub Issues](https://github.com/hexett/StaffUtilsPlus/issues) for bug reports and suggestions
 - [Modrinth Page](https://modrinth.com/plugin/staffutilsplus) for downloads and reviews
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

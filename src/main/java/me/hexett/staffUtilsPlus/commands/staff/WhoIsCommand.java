@@ -1,8 +1,6 @@
 package me.hexett.staffUtilsPlus.commands.staff;
 
 import me.hexett.staffUtilsPlus.commands.BaseCommand;
-import me.hexett.staffUtilsPlus.service.ServiceRegistry;
-import me.hexett.staffUtilsPlus.service.punishments.PunishmentService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -26,14 +24,31 @@ public class WhoIsCommand extends BaseCommand {
 
     @Override
     protected boolean execute(CommandSender sender, String[] args) {
-        OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
+        Player onlinePlayer = Bukkit.getPlayer(args[0]);
+        OfflinePlayer target;
+        if (onlinePlayer != null) {
+            target = onlinePlayer;
+        } else {
+            // Try to get offline player by UUID lookup
+            try {
+                target = Bukkit.getOfflinePlayer(java.util.UUID.fromString(args[0]));
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage(ChatColor.RED + "Player not found.");
+                return false;
+            }
+        }
+        
+        if (target.getName() == null) {
+            sender.sendMessage(ChatColor.RED + "Player not found.");
+            return false;
+        }
         sender.sendMessage(ChatColor.YELLOW + "=== Whois: " + target.getName() + " ===");
 
         sender.sendMessage(ChatColor.GRAY + "UUID: " + target.getUniqueId());
 
         if (target.isOnline()) {
             Player onlineTarget = (Player) target;
-            if(sender.hasPermission("staffutils.whois.ip")) {
+            if(sender.hasPermission("staffutils.whois.ip") && onlineTarget.getAddress() != null) {
                 sender.sendMessage(ChatColor.GRAY + "IP: " + onlineTarget.getAddress().getAddress().getHostAddress());
             }
             sender.sendMessage(ChatColor.GRAY + "World: " + onlineTarget.getWorld().getName());

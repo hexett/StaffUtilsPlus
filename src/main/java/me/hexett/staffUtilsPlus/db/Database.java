@@ -126,4 +126,30 @@ public interface Database {
      * @return The warning, or null if not found
      */
     Warning getWarning(int warningId);
+
+    List<Punishment> getPunishmentsByIssuer(UUID issuer);
+
+    /**
+     * Get the IP address for a player.
+     *
+     * @param uuid The player's UUID
+     * @return The IP address, or null if not found
+     */
+    String getPlayerIP(UUID uuid);
+
+    /**
+     * Get all players who have joined from a specific IP address.
+     *
+     * @param ipAddress The IP address
+     * @return List of player UUIDs
+     */
+    List<UUID> getPlayersByIP(String ipAddress);
+
+    /**
+     * Record a player's IP address.
+     *
+     * @param uuid The player's UUID
+     * @param ipAddress The IP address
+     */
+    void recordPlayerIP(UUID uuid, String ipAddress);
 }

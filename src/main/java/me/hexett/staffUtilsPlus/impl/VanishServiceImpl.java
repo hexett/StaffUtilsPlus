@@ -1,10 +1,5 @@
 package me.hexett.staffUtilsPlus.impl;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import me.hexett.staffUtilsPlus.StaffUtilsPlus;
 import me.hexett.staffUtilsPlus.service.vanish.HideItems;
 import me.hexett.staffUtilsPlus.service.vanish.VanishService;
@@ -19,8 +14,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +43,7 @@ public class VanishServiceImpl implements VanishService {
         }
 
         for(Player target : Bukkit.getOnlinePlayers()) {
-            if(!target.equals(player) && !target.hasPermission("staffutils.vanish")) {
+            if(target != null && !target.equals(player) && !target.hasPermission("staffutils.vanish")) {
                 target.hidePlayer(plugin, player);
             }
         }
@@ -60,7 +53,7 @@ public class VanishServiceImpl implements VanishService {
         player.setMetadata("vanished", new FixedMetadataValue(plugin, true));
 
         List<Player> viewers = Bukkit.getServer().getOnlinePlayers().stream()
-                .filter(p -> !p.equals(player))
+                .filter(p -> p != null && !p.equals(player))
                 .collect(Collectors.toList());
         hideItems.hideEquipment(player, viewers);
 
@@ -84,7 +77,9 @@ public class VanishServiceImpl implements VanishService {
         }
 
         for(Player target : Bukkit.getOnlinePlayers()) {
-            target.showPlayer(plugin, player);
+            if(target != null) {
+                target.showPlayer(plugin, player);
+            }
         }
 
         player.setSilent(false);

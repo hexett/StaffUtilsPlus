@@ -29,7 +29,6 @@ public class PunishmentServiceImpl implements PunishmentService {
     
     private final Database database;
     private final Cache<UUID, List<Punishment>> cache;
-    private final Plugin plugin;
 
     /**
      * Create a new PunishmentServiceImpl.
@@ -39,7 +38,6 @@ public class PunishmentServiceImpl implements PunishmentService {
      */
     public PunishmentServiceImpl(Database database, Plugin plugin) {
         this.database = database;
-        this.plugin = plugin;
         this.cache = Caffeine.newBuilder()
                 .expireAfterWrite(5, TimeUnit.MINUTES)
                 .build();
@@ -310,7 +308,8 @@ public class PunishmentServiceImpl implements PunishmentService {
 
         // Kick online players with this IP if present
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            if (onlinePlayer.getAddress() != null && 
+            if (onlinePlayer != null && onlinePlayer.getAddress() != null && 
+                onlinePlayer.getAddress().getAddress() != null &&
                 onlinePlayer.getAddress().getAddress().getHostAddress().equals(ipAddress)) {
                 String kickMessage = buildIPBanKickMessage(reason, expiresAt);
                 onlinePlayer.kickPlayer(kickMessage);

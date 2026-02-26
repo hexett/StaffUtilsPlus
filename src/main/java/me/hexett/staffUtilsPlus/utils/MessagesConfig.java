@@ -19,7 +19,7 @@ public class MessagesConfig {
 
     private static FileConfiguration messages;
     private static File file;
-    private static String prefix = "";
+    private static String prefix;
     private static boolean initialized = false;
 
     /**
@@ -49,7 +49,7 @@ public class MessagesConfig {
             plugin.getLogger().warning("Failed to load default messages: " + e.getMessage());
         }
 
-        prefix = color(messages.getString("prefix", "&7"));
+        prefix = color(messages.getString("prefix"));
         initialized = true;
     }
 

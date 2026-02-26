@@ -5,7 +5,6 @@ import me.hexett.staffUtilsPlus.service.notes.Note;
 import me.hexett.staffUtilsPlus.service.notes.NoteService;
 import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,11 +16,9 @@ import java.util.UUID;
 public class NoteServiceImpl implements NoteService {
 
     private final Database database;
-    private final Plugin plugin;
 
     public NoteServiceImpl(Database database, Plugin plugin) {
         this.database = database;
-        this.plugin = plugin;
     }
 
     @Override
