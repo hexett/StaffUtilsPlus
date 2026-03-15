@@ -24,45 +24,38 @@ commands:
     aliases: [tempban]
     permission: staffutils.ban
     permission-message: "&cYou don't have permission to use this command!"
-
   unban:
     description: Unban a player from the server
     usage: /unban <player>
     permission: staffutils.unban
     permission-message: "&cYou don't have permission to use this command!"
-
   kick:
     description: Kick a player from the server
     usage: /kick <player>
     permission: staffutils.kick
     permission-message: "&cYou don't have permission to use this command!"
-
   mute:
     description: Mute a player on the server
     usage: /mute <player> [reason] [duration]
     aliases: [tempmute]
     permission: staffutils.mute
     permission-message: "&cYou don't have permission to use this command!"
-
   unmute:
     description: Unmute a player on the server
     usage: /unmute <player>
     permission: staffutils.unmute
     permission-message: "&cYou don't have permission to use this command!"
-
   ipban:
     description: IP ban a player from the server
     usage: /ipban <player> [reason] [duration]
     aliases: [tempipban]
     permission: staffutils.ipban
     permission-message: "&cYou don't have permission to use this command!"
-
   unbanip:
     description: Unban an IP address from the server
     usage: /unbanip <ip-address>
     permission: staffutils.unbanip
     permission-message: "&cYou don't have permission to use this command!"
-
   # ┌─────────────────────────────────┐
   # │     Player Management           │
   # └─────────────────────────────────┘
@@ -71,31 +64,26 @@ commands:
     usage: /notes <player> [add/remove] [content/id]
     permission: staffutils.notes
     permission-message: "&cYou don't have permission to use this command!"
-
   warnings:
     description: Manage player warnings
     usage: /warnings <player> [add/remove] [reason/severity/id]
     permission: staffutils.warnings
     permission-message: "&cYou don't have permission to use this command!"
-
   history:
     description: Shows the punishment history of a player
     usage: /history <player>
     permission: staffutils.history
     permission-message: "&cYou don't have permission to use this command!"
-
   blame:
     description: View punishments issued by a player
     usage: /blame <player>
     permission: staffutils.blame
     permission-message: "&cYou don't have permission to use this command!"
-
   alts:
     description: Shows the alt accounts of a player
     usage: /alts <player>
     permission: staffutils.alts
     permission-message: "&cYou don't have permission to use this command!"
-
   # ┌─────────────────────────────────┐
   # │     Staff Utilities             │
   # └─────────────────────────────────┘
@@ -103,20 +91,17 @@ commands:
     description: Puts a player in vanish
     permission: staffutils.vanish
     permission-message: "&cYou don't have permission to use this command!"
-
   commandspy:
     description: Allows staff to see other players' commands
     aliases: [cs]
     usage: /commandspy
     permission: staffutils.commandspy
     permission-message: "&cYou don't have permission to use this command!"
-
   whois:
     description: Shows staff player details
     usage: /whois <player>
     permission: staffutils.whois
     permission-message: "&cYou don't have permission to use this command!"
-
   # ┌─────────────────────────────────┐
   # │     General Commands            │
   # └─────────────────────────────────┘
@@ -128,8 +113,7 @@ commands:
     permission-message: "&cYou don't have permission to use this command!"
   staffutilsplus:
     description: The base plugin command
-    usage: /staffutilsplus 
-  
+    usage: /staffutilsplus
   # Disabled for future implementation
     #staffmenu:
     #  description: Open the staff menu
@@ -171,121 +155,96 @@ permissions:
       staffutils.notify.kick: true
       staffutils.notify.mute: true
       staffutils.notify.ipban: true
-
   # ┌─────────────────────────────────┐
   # │     Punishment Permissions      │
   # └─────────────────────────────────┘
   staffutils.ban:
     description: Allows banning players
     default: op
-
   staffutils.unban:
     description: Allows unbanning players
     default: op
-
   staffutils.kick:
     description: Allows kicking players
     default: op
-
   staffutils.mute:
     description: Allows muting players
     default: op
-
   staffutils.unmute:
     description: Allows unmuting players
     default: op
-
   staffutils.ipban:
     description: Allows IP banning players
     default: op
-
   staffutils.unbanip:
     description: Allows unbanning IP addresses
     default: op
-
   # ┌─────────────────────────────────┐
   # │   Player Management Perms       │
   # └─────────────────────────────────┘
   staffutils.notes:
     description: Allows managing player notes
     default: op
-
   staffutils.warnings:
     description: Allows managing player warnings
     default: op
-
   staffutils.history:
     description: Allows players to use /history
     default: op
-
   staffutils.blame:
     description: Allows players to use /blame
     default: op
-
   staffutils.alts:
     description: Allows players to use /alts
     default: op
-
   staffutils.alts.notify:
     description: Receives notifications when players with alts join
     default: op
-
   # ┌─────────────────────────────────┐
   # │    Staff Utility Permissions    │
   # └─────────────────────────────────┘
   staffutils.vanish:
     description: Allows players to enter vanish and see vanished players
     default: op
-
   staffutils.commandspy:
     description: Allows players to toggle CommandSpy
     default: op
-
   staffutils.whois.*:
     description: Allows use of all /whois features
     default: op
     children:
       staffutils.whois: true
       staffutils.whois.ip: true
-
   staffutils.whois:
     description: Allows use of /whois
     default: op
-
   staffutils.whois.ip:
     description: Shows IP in /whois
     default: op
-
   # ┌─────────────────────────────────┐
   # │    Notification Permissions     │
   # └─────────────────────────────────┘
   staffutils.notify.ban:
     description: Receives ban notifications
     default: op
-
   staffutils.notify.kick:
     description: Receives kick notifications
     default: op
-
   staffutils.notify.mute:
     description: Receives mute notifications
     default: op
-
   staffutils.notify.ipban:
     description: Receives IP ban notifications
     default: op
-
   # ┌─────────────────────────────────┐
   # │    Administrative Permissions   │
   # └─────────────────────────────────┘
   staffutils.menu:
     description: Allows accessing the staff menu
     default: op
-
   staffutils.reload:
     description: Allows reloading the plugin
     default: op
-
   staffutils.debug:
     description: Allows debug commands
     default: op

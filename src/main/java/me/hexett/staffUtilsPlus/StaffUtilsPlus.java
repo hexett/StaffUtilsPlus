@@ -85,6 +85,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
         if (!dbEnabled) {
             log.warning(MessagesConfig.get("errors.database.not-enabled"));
             database = new LocalDatabase(this);
+            database.connect();
             return;
         }
 
@@ -105,6 +106,7 @@ public final class StaffUtilsPlus extends JavaPlugin {
             log.severe("Failed to connect to the database: " + e.getMessage());
             log.warning("Falling back to local storage...");
             database = new LocalDatabase(this);
+            database.connect();
         }
     }
 

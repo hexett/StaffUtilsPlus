@@ -45,5 +45,3 @@ jobs:
 
           game-versions: |
             >=1.21.1
-
-          modrinth-body-path: README.md
