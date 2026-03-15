@@ -185,21 +185,21 @@ public final class StaffUtilsPlus extends JavaPlugin {
      * Display the plugin startup message.
      */
     private void displayStartupMessage() {
-        log.info(ColorUtils.translateColorCodes("&f================================"));
-        log.info(ColorUtils.translateColorCodes("&f========[&6StaffUtilsPlus]&f========"));
-        log.info(ColorUtils.translateColorCodes("&f========[&aPlugin Enabled]&f========"));
-        log.info(ColorUtils.translateColorCodes("&f========[&8Made by Hexett]&f========"));
-        log.info(ColorUtils.translateColorCodes("&f================================"));
+        log.info("§f================================");
+        log.info("§f========[§6StaffUtilsPlus]§f========");
+        log.info("§f========[§aPlugin Enabled]§f========");
+        log.info("§f========[§8Made by Hexett]§f========");
+        log.info("§f================================");
     }
 
     /**
      * Display the plugin shutdown message.
      */
     private void displayShutdownMessage() {
-        log.info(ColorUtils.translateColorCodes("&f================================"));
-        log.info(ColorUtils.translateColorCodes("&f========[&6StaffUtilsPlus]&f========"));
-        log.info(ColorUtils.translateColorCodes("&f========[&cPlugin Disabled]&f======="));
-        log.info(ColorUtils.translateColorCodes("&f================================"));
+        log.info("§f================================");
+        log.info("§f========[§6StaffUtilsPlus]§f========");
+        log.info("§f========[§cPlugin Disabled]§f=======");
+        log.info("§f================================");
     }
 
     /**

@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.3.1] - 2026-03-14
+
+### Added
+- `f00aa02` — docs: add changelog.md
+
+### Fixed
+- `f5b5ed5` — fix: punishments not applying on restart
+- `50a23db` — feat: add GitHub CI automation to push to Modrinth on release addition
+
+
 ## [1.3.0] - 2026-02-26
 
 ### Added

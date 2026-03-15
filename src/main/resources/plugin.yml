@@ -2,7 +2,7 @@
 #         StaffUtilsPlus Plugin
 # ========================================
 name: StaffUtilsPlus
-version: 1.3.0
+version: 1.3.1
 main: me.hexett.staffUtilsPlus.StaffUtilsPlus
 api-version: 1.21
 description: A comprehensive staff utilities plugin for Minecraft servers
@@ -155,6 +155,141 @@ permissions:
       staffutils.notify.kick: true
       staffutils.notify.mute: true
       staffutils.notify.ipban: true
+
+  # ┌─────────────────────────────────┐
+  # │  Compatibility Permissions      │
+  # └─────────────────────────────────┘
+  staffutilsplus.*:
+    description: Compatibility alias for staffutils.* permissions
+    default: op
+    children:
+      staffutils.*: true
+  staffutilsplus.ban:
+    description: Compatibility alias for staffutils.ban
+    default: op
+    children:
+      staffutils.ban: true
+  staffutilsplus.unban:
+    description: Compatibility alias for staffutils.unban
+    default: op
+    children:
+      staffutils.unban: true
+  staffutilsplus.kick:
+    description: Compatibility alias for staffutils.kick
+    default: op
+    children:
+      staffutils.kick: true
+  staffutilsplus.mute:
+    description: Compatibility alias for staffutils.mute
+    default: op
+    children:
+      staffutils.mute: true
+  staffutilsplus.unmute:
+    description: Compatibility alias for staffutils.unmute
+    default: op
+    children:
+      staffutils.unmute: true
+  staffutilsplus.ipban:
+    description: Compatibility alias for staffutils.ipban
+    default: op
+    children:
+      staffutils.ipban: true
+  staffutilsplus.unbanip:
+    description: Compatibility alias for staffutils.unbanip
+    default: op
+    children:
+      staffutils.unbanip: true
+  staffutilsplus.notes:
+    description: Compatibility alias for staffutils.notes
+    default: op
+    children:
+      staffutils.notes: true
+  staffutilsplus.warnings:
+    description: Compatibility alias for staffutils.warnings
+    default: op
+    children:
+      staffutils.warnings: true
+  staffutilsplus.history:
+    description: Compatibility alias for staffutils.history
+    default: op
+    children:
+      staffutils.history: true
+  staffutilsplus.blame:
+    description: Compatibility alias for staffutils.blame
+    default: op
+    children:
+      staffutils.blame: true
+  staffutilsplus.alts:
+    description: Compatibility alias for staffutils.alts
+    default: op
+    children:
+      staffutils.alts: true
+  staffutilsplus.alts.notify:
+    description: Compatibility alias for staffutils.alts.notify
+    default: op
+    children:
+      staffutils.alts.notify: true
+  staffutilsplus.vanish:
+    description: Compatibility alias for staffutils.vanish
+    default: op
+    children:
+      staffutils.vanish: true
+  staffutilsplus.commandspy:
+    description: Compatibility alias for staffutils.commandspy
+    default: op
+    children:
+      staffutils.commandspy: true
+  staffutilsplus.whois.*:
+    description: Compatibility alias for staffutils.whois.*
+    default: op
+    children:
+      staffutils.whois.*: true
+  staffutilsplus.whois:
+    description: Compatibility alias for staffutils.whois
+    default: op
+    children:
+      staffutils.whois: true
+  staffutilsplus.whois.ip:
+    description: Compatibility alias for staffutils.whois.ip
+    default: op
+    children:
+      staffutils.whois.ip: true
+  staffutilsplus.menu:
+    description: Compatibility alias for staffutils.menu
+    default: op
+    children:
+      staffutils.menu: true
+  staffutilsplus.reload:
+    description: Compatibility alias for staffutils.reload
+    default: op
+    children:
+      staffutils.reload: true
+  staffutilsplus.debug:
+    description: Compatibility alias for staffutils.debug
+    default: op
+    children:
+      staffutils.debug: true
+  staffutilsplus.notify.ban:
+    description: Compatibility alias for staffutils.notify.ban
+    default: op
+    children:
+      staffutils.notify.ban: true
+  staffutilsplus.notify.kick:
+    description: Compatibility alias for staffutils.notify.kick
+    default: op
+    children:
+      staffutils.notify.kick: true
+  staffutilsplus.notify.mute:
+    description: Compatibility alias for staffutils.notify.mute
+    default: op
+    children:
+      staffutils.notify.mute: true
+  staffutilsplus.notify.ipban:
+    description: Compatibility alias for staffutils.notify.ipban
+    default: op
+    children:
+      staffutils.notify.ipban: true
+
   # ┌─────────────────────────────────┐
   # │     Punishment Permissions      │
   # └─────────────────────────────────┘

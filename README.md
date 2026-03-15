@@ -97,6 +97,10 @@ vanish-fake-messages: true # When a player goes into vanish, broadcasts a fake j
 
 ## Permissions
 
+/> ⚠️ **Compatibility note:** Older versions of the plugin used `staffutilsplus.*` permission nodes. Newer versions use `staffutils.*`, but both permission styles are now accepted by the plugin (so you can grant either node and the plugin will still allow the command).
+>
+> ✅ Also: **Operators (OP)** are allowed to run any command even if the permission node is not explicitly granted (useful if your permissions plugin doesn’t honor defaults).
+
 - `staffutils.*` — **All plugin permissions** (default: OP)
 - `staffutils.ban` — Ban players
 - `staffutils.unban` — Unban players

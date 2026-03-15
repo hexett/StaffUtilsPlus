@@ -113,7 +113,34 @@ public abstract class BaseCommand implements CommandExecutor, TabCompleter {
      * @return true if the sender has permission
      */
     protected boolean hasPermission(CommandSender sender) {
-        return permission == null || permission.isEmpty() || sender.hasPermission(permission);
+        if (permission == null || permission.isEmpty()) {
+            return true;
+        }
+
+        // Allow ops to bypass permission checks (useful when perms plugin doesn't grant defaults)
+        if (sender instanceof Player && ((Player) sender).isOp()) {
+            return true;
+        }
+
+        // Primary permission check
+        if (sender.hasPermission(permission)) {
+            return true;
+        }
+
+        // Compatibility: allow either "staffutils.*" or "staffutilsplus.*" nodes
+        if (permission.startsWith("staffutils.")) {
+            String alt = permission.replaceFirst("staffutils\\.", "staffutilsplus.");
+            if (sender.hasPermission(alt)) {
+                return true;
+            }
+        } else if (permission.startsWith("staffutilsplus.")) {
+            String alt = permission.replaceFirst("staffutilsplus\\.", "staffutils.");
+            if (sender.hasPermission(alt)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
